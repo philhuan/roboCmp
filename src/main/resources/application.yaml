@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: 1234
-    url: jdbc:mysql://i.hjwblog.com:3306/netschool?characterEncoding=utf8
+    url: jdbc:mysql://localhostMySQL:3306/netschool?characterEncoding=utf8
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
