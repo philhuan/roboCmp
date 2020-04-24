@@ -1,1 +1,131 @@
-<div style="padding: 15px;">我的服务</div>
+<!-- my_server -->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>robocup 计算平台</title>
+    <link rel="stylesheet" href="js/layui/css/layui.css">
+
+
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script src="js/layui/layui.js"></script>
+<script src="js/utils.js"></script>
+
+<script src="js/pages/flow.js"></script>
+<script src="js/pages/monitor.js"></script>
+<script src="js/pages/my_image.js"></script>
+<script src="js/pages/my_server.js"></script>
+<script src="js/pages/result.js"></script>
+<script src="js/pages/server_detail.js"></script>
+<script src="js/index.js"></script>
+
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">robocup 计算平台</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+
+            <li class="layui-nav-item">
+                <a id="now_namespace" href="javascript:;">正式环境</a>
+                <dl id="namespaces" class="layui-nav-child">
+                    <dd><a namespace_id="0" href="">正式环境</a></dd>
+                    <dd><a href="">hjwTest</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">环境管理</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item"><a href="">帮助</a></li>
+            <li class="layui-nav-item"><a href="">反馈</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    hjw
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-this"><a href="javascript:loadPage('my_server')">我的服务</a></li>
+                <li class="layui-nav-item"><a href="javascript:loadPage('flow')">流程管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:loadPage('monitor')">进程监控</a></li>
+                <li class="layui-nav-item"><a href="javascript:loadPage('config')">配置文件</a></li>
+                <li class="layui-nav-item ">
+                    <a class="" href="javascript:;">镜像管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:loadPage('my_image')">我的镜像</a></dd>
+                        <!-- <dd><a href="javascript:;">列表二</a></dd>
+            <dd><a href="javascript:;">列表三</a></dd>
+            <dd><a href="">超链接</a></dd> -->
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="javascript:loadPage('result')">运行结果</a></li>
+                <li class="layui-nav-item"><a href="javascript:refresh()">Test</a></li>
+                <li class="layui-nav-item"><a href="javascript:replaceOrAddParamVal('aa','aa')">Test</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="layui-body layui-bg-gray" id="body">
+        <!-- 内容主体区域 -->
+
+        <div style="padding: 15px;">我的服务</div>
+
+        <div class="layui-card" style="margin : 15px;" >
+            <div class="layui-card-header">服务列表</div>
+            <div class="layui-card-body">
+                <table id="my_server" lay-filter="test"></table>
+            </div>
+        </div>
+
+        <script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+
+            <!-- 这里同样支持 laytpl 语法，如： -->
+            {{#  if(d.auth > 2){ }}
+            <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
+            {{#  } }}
+        </script>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © robocmp.com - robocup 计算平台
+    </div>
+</div>
+
+
+
+
+
+
+<div id="a"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
