@@ -11,7 +11,7 @@ public class ServiceServiceImpl implements ServiceService {
     @Autowired
     KubernetesClient client;
     @Override
-    public List<Service> listService() {
-        return client.services().list().getItems();
+    public List<Service> listService(String namespace) {
+        return client.services().inNamespace(namespace).list().getItems();
     }
 }

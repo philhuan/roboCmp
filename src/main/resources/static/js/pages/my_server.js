@@ -2,14 +2,12 @@ console.log('my_server')
 let services;
 
 
-var my_server = {
-    refresh: function () {
-        getServers()
-    }
-};
+
+
 
 
 function getServers() {
+    namespace_name = namespaces[namespace_id].metadata.name
     let url = host + "/services/list"
     $.get(url, function (res) {
         console.log(res)
@@ -20,6 +18,7 @@ function getServers() {
             console.log(services)
         }
         renderService()
+        loadNodes()
     })
 }
 
@@ -31,15 +30,19 @@ function renderService() {
         let data = []
         let metadata;
         for (let i = 0; i < services.length; i++) {
-            // metadata = services[i]['metadata']
-            // console.log(metadata)
-            // let line = {
-            //     'server': metadata.name,
-            //     'creationTime': metadata.creationTimestamp,
-            //     'ip': services.spec.clusterIP
-            //     'port': services.spec.ports['port']
-            // }
-            // data.push(line)
+
+            metadata = services[i]['metadata']
+            console.log(metadata)
+            if (metadata.name === 'kubernetes') {
+                continue
+            }
+            let line = {
+                'server': metadata.name,
+                'creationTime': metadata.creationTimestamp,
+                'ip': services[i].spec.clusterIP,
+                'port': services[i]['spec']['ports'][0]['port']
+            }
+            data.push(line)
         }
 
 
@@ -72,7 +75,10 @@ function renderService() {
 
             if (layEvent === 'detail') { //查看
                 //do somehing
-                loadPage('server_detail')
+                // loadPage('server_detail')
+                console.log(data.server)
+
+                goto("server_detail.html?server="+data.server)
                 console.log('detail')
             } else if (layEvent === 'del') { //删除
                 layer.confirm('真的删除行么', function (index) {

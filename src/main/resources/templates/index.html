@@ -12,13 +12,6 @@
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 <script src="js/layui/layui.js"></script>
 <script src="js/utils.js"></script>
-<script src="js/common.js"></script>
-<script src="js/pages/server_detail.js"></script>
-<script src="js/namespace.js"></script>
-<script src="js/pages/my_server.js"></script>
-<script src="js/index.js"></script>
-
-
 
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
@@ -56,7 +49,7 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item layui-this"><a href="javascript:loadPage('my_server')">我的服务</a></li>
+                <li class="layui-nav-item layui-this"><a href="my_server.html">我的服务</a></li>
                 <li class="layui-nav-item"><a href="javascript:loadPage('flow')">流程管理</a></li>
                 <li class="layui-nav-item"><a href="javascript:loadPage('monitor')">进程监控</a></li>
                 <li class="layui-nav-item"><a href="javascript:loadPage('config')">配置文件</a></li>
@@ -79,26 +72,7 @@
 
     <div class="layui-body layui-bg-gray" id="body">
         <!-- 内容主体区域 -->
-
-        <div style="padding: 15px;">我的服务</div>
-
-        <div class="layui-card" style="margin : 15px;" >
-            <div class="layui-card-header">服务列表</div>
-            <div class="layui-card-body">
-                <table id="my_server" lay-filter="test"></table>
-            </div>
-        </div>
-
-        <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-
-            <!-- 这里同样支持 laytpl 语法，如： -->
-            {{#  if(d.auth > 2){ }}
-            <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
-            {{#  } }}
-        </script>
+        <div style="padding: 15px;">404</div>
     </div>
 
     <div class="layui-footer">
@@ -115,11 +89,3 @@
 <div id="a"></div>
 </body>
 </html>
-
-
-
-
-
-
-
-

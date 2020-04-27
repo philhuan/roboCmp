@@ -1,0 +1,25 @@
+
+<div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <li class="layui-nav-item layui-this"><a href="my_server.html">我的服务</a></li>
+            <li class="layui-nav-item"><a href="javascript:loadPage('flow')">流程管理</a></li>
+            <li class="layui-nav-item"><a href="javascript:loadPage('monitor')">进程监控</a></li>
+            <li class="layui-nav-item"><a href="javascript:loadPage('config')">配置文件</a></li>
+            <li class="layui-nav-item ">
+                <a class="" href="javascript:;">镜像管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:loadPage('my_image')">我的镜像</a></dd>
+                    <!-- <dd><a href="javascript:;">列表二</a></dd>
+        <dd><a href="javascript:;">列表三</a></dd>
+        <dd><a href="">超链接</a></dd> -->
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:loadPage('result')">运行结果</a></li>
+            <li class="layui-nav-item"><a href="javascript:refresh()">Test</a></li>
+            <li class="layui-nav-item"><a href="javascript:replaceOrAddParamVal('aa','aa')">Test</a></li>
+        </ul>
+
+    </div>
+</div>

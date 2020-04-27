@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class K8sApi {
-    String master = "192.168.182.128:8080/";
+    String master = "192.168.182.131:8080/";
     Config config = new ConfigBuilder().withMasterUrl(master).build();
 
 

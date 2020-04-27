@@ -48,3 +48,7 @@ function replaceOrAddParamVal(paramName, replaceWith) {
         replaceParamValNotRefresh(paramName, replaceWith)
     }
 }
+
+function goto(url) {
+    location.href=url
+}

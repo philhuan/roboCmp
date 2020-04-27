@@ -5,5 +5,5 @@ import io.fabric8.kubernetes.api.model.Service;
 import java.util.List;
 
 public interface ServiceService {
-    public List<Service> listService();
+    public List<Service> listService(String namespace);
 }

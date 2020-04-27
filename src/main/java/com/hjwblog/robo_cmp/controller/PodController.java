@@ -20,8 +20,8 @@ public class PodController {
     PodService podService;
 
     @GetMapping("/list")
-    public ResponseEntity listNamespace (String namespace){
-        List<Pod> list=  podService.getPodByNamespace(namespace);
+    public ResponseEntity listNamespace (String namespace,String service){
+        List<Pod> list=  podService.getPodByNamespace(namespace, service);
         return ResponseEntity.ok(new JSONResult<List>(list));
     }
 }

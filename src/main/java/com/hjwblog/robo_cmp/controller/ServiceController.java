@@ -18,8 +18,8 @@ public class ServiceController {
     ServiceService serviceService;
 
     @GetMapping("/list")
-    public ResponseEntity listService(){
-        List<Service> list= serviceService.listService();
+    public ResponseEntity listService(String namespace){
+        List<Service> list= serviceService.listService(namespace);
         return ResponseEntity.ok(new JSONResult<List>(list));
     }
 }
