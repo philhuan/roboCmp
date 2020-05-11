@@ -1,8 +1,6 @@
 <!-- server_detail -->
 
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +18,10 @@
 <script src="js/common.js"></script>
 
 <script src="js/pages/server_detail.js"></script>
-
+<script src="js/pages/my_image.js"></script>
 <script src="js/namespace.js"></script>
 <script src="js/pages/my_server.js"></script>
 <script src="js/index.js"></script>
-
 
 
 <div class="layui-layout layui-layout-admin">
@@ -89,10 +86,39 @@
 
         <div id="server_name" style="padding: 15px;">GaitOptimization</div>
 
-        <div class="layui-card" style="margin : 15px;" >
-            <div  class="layui-card-header">pod 列表</div>
-            <div class="layui-card-body">
-                <table id="nodes" lay-filter="test"></table>
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">docker 列表</li>
+                <li>镜像管理</li>
+            </ul>
+            <div class="layui-tab-content">
+
+                <div class="layui-tab-item layui-show">
+                    <table id="nodes" lay-filter="bar_my_pod"></table>
+                    <script type="text/html" id="bar_my_pod">
+                        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+
+                        <!-- 这里同样支持 laytpl 语法，如： -->
+                        {{#  if(d.auth > 2){ }}
+                        <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
+                        {{#  } }}
+                    </script>
+                </div>
+                <div class="layui-tab-item ">
+                    <table id="my_image" lay-filter="bar_my_image"></table>
+                    <script type="text/html" id="bar_my_image">
+                        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+
+                        <!-- 这里同样支持 laytpl 语法，如： -->
+                        {{#  if(d.auth > 2){ }}
+                        <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
+                        {{#  } }}
+                    </script>
+                </div>
             </div>
         </div>
 
@@ -104,10 +130,6 @@
         © robocmp.com - robocup 计算平台
     </div>
 </div>
-
-
-
-
 
 
 <div id="a"></div>

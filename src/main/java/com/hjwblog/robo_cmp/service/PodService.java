@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PodService {
     public List<Pod> getPodByNamespace(String namespace,String service);
+    public boolean deletePod(String name);
 }

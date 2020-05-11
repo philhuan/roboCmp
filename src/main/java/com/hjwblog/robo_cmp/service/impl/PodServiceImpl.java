@@ -21,4 +21,13 @@ public class PodServiceImpl implements PodService {
         return client.pods().inNamespace(namespace).withLabel("run="+service).list().getItems();
 
     }
+
+    @Override
+    public boolean deletePod(String name) {
+        Pod pod = client.pods().inNamespace("default").withName(name).get();
+        if (pod == null)  {
+            return false;
+        }
+        return client.resource(pod).delete();
+    }
 }

@@ -20,8 +20,15 @@ public class PodController {
     PodService podService;
 
     @GetMapping("/list")
-    public ResponseEntity listNamespace (String namespace,String service){
+    public ResponseEntity listPods (String namespace,String service){
         List<Pod> list=  podService.getPodByNamespace(namespace, service);
-        return ResponseEntity.ok(new JSONResult<List>(list));
+        return ResponseEntity.ok(new JSONResult<>(list));
     }
+
+    @GetMapping("/delete")
+    public ResponseEntity deletePod (String podName){
+        Boolean ok=  podService.deletePod(podName);
+        return ResponseEntity.ok(new JSONResult<>(ok));
+    }
+
 }
