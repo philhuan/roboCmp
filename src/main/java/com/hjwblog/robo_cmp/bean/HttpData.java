@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class HttpData {
     private String version;
-    private int result;
+    private double result;
     @SerializedName("hostName")
     private String hostName;
     public void setVersion(String version) {
@@ -14,10 +14,10 @@ public class HttpData {
         return version;
     }
 
-    public void setResult(int result) {
+    public void setResult(double result) {
         this.result = result;
     }
-    public int getResult() {
+    public double getResult() {
         return result;
     }
 

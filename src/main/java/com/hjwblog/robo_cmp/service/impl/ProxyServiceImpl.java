@@ -3,6 +3,8 @@ package com.hjwblog.robo_cmp.service.impl;
 import com.google.gson.Gson;
 import com.hjwblog.robo_cmp.bean.HttpResp;
 import com.hjwblog.robo_cmp.bean.JSONResult;
+import com.hjwblog.robo_cmp.model.CmpResult;
+import com.hjwblog.robo_cmp.model.mapper.CmpResultMapper;
 import com.hjwblog.robo_cmp.service.ProxyService;
 import io.fabric8.kubernetes.api.model.Pod;
 import io.fabric8.kubernetes.client.KubernetesClient;
@@ -12,12 +14,16 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
 @Service
 public class ProxyServiceImpl implements ProxyService {
+
+    @Autowired
+    private CmpResultMapper cmpResultMapper;
 
 
     private Hashtable<String,Boolean> hashtable = new Hashtable<>();
@@ -46,18 +52,32 @@ public class ProxyServiceImpl implements ProxyService {
         Gson gson = new Gson();
         while (!find) {
             List<Pod> pods = client.pods().inNamespace(namespace).withLabel("run="+service).list().getItems();
+            if (pods.size() == 0) {
+                return new JSONResult<>("service without any pod");
+            }
             for (Pod pod:pods) {
-                Boolean b = hashtable.get(pod.getMetadata().getName());
+                String podName = pod.getMetadata().getName();
+                Boolean b = hashtable.get(podName);
                 if ( b== null || !b){
-                    String url = "http://"+pod.getStatus().getPodIP() + "?param="+param;
+                    hashtable.put(podName,true);
+                    String urlParam = URLEncoder.encode(param);
+                    String url = "http://"+pod.getStatus().getPodIP() + "?param="+urlParam;
                     try {
                         String ret = get(url);
                         HttpResp resp =  gson.fromJson(ret, HttpResp.class);
+                        cmpResultMapper.insert(new CmpResult(service,podName,param,resp.getData().getResult()+""));
                         return new JSONResult<>(resp);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        return new JSONResult<>(e.toString());
+                    }finally {
+                        hashtable.put(podName,false);
                     }
                 }
+            }
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 

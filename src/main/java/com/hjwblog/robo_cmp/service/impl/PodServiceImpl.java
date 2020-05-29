@@ -18,7 +18,9 @@ public class PodServiceImpl implements PodService {
 //            serviceName = serviceName.substring(0, serviceName.length()-1);
 //            return client.pods().inNamespace(namespace).withLabel("app="+serviceName).list().getItems();
 //        }
-        return client.pods().inNamespace(namespace).withLabel("run="+service).list().getItems();
+        return client.pods().inNamespace(namespace)
+                .withLabel("run="+service)
+                .list().getItems();
 
     }
 

@@ -33,9 +33,11 @@ function renderImages() {
         for (let i = 0; i < images.length ; i++) {
             let name = images[i].RepoTags
 
-            if (name[0] == "<none>:<none>") {
+            if (!name  || name[0] === "<none>:<none>") {
                 continue
             }
+            images[i].Size/=1024*1024
+            images[i].Size = images[i].Size.toFixed(2)
             data.push(images[i])
         }
 
@@ -53,7 +55,8 @@ function renderImages() {
             ,cols: [[ //表头
                 {field: 'RepoTags', title: '镜像',  sort: true, fixed: 'left'}
                 ,{field: 'Id', title: 'id'}
-                ,{field: 'Size', title: '大小'}
+                ,{field: 'Size', title: '大小(M)'}
+                , {fixed: 'right', align: 'center', toolbar: '#bar_my_image'}
             ]],
             data:data
         });
@@ -77,19 +80,38 @@ function renderImages() {
                     //向服务端发送删除指令
                     console.log(data,index)
                 });
-            } else if (layEvent === 'edit') { //编辑
-                console.log('edit')
+            } else if (layEvent === 'use') { //使用
+                image = data.RepoTags
+                console.log('use',image)
+                useImage(namespaces[namespace_id].metadata.name,getQueryVariable("server"),data.RepoTags)
+
+
                 //do something
 
                 //同步更新缓存对应的值
-                obj.update({
-                    username: '123'
-                    , title: 'xxx'
-                });
+                // obj.update({
+                //     username: '123'
+                //     , title: 'xxx'
+                // });
             } else if (layEvent === 'LAYTABLE_TIPS') {
                 layer.alert('Hi，头部工具栏扩展的右侧图标。');
             }
         });
 
     });
+}
+
+function useImage(namespace, server, image) {
+
+    let url = host + "/services/set_image?namespace="+namespace+"&service="+server+"&image="+encodeURI(image)
+    $.get(url, function (res) {
+        console.log(res)
+        if (res.code !== 0) {
+            layer.msg(url + ' 连接失败,msg:' + res.message)
+        } else {
+            alert("修改成功")
+            refresh()
+        }
+        renderImages()
+    })
 }

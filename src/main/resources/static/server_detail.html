@@ -61,7 +61,7 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-this"><a href="index.html">我的服务</a></li>
-                <li class="layui-nav-item"><a href="javascript:loadPage('flow')">流程管理</a></li>
+                <li class="layui-nav-item"><a href="sys_info.html">计算机信息</a></li>
                 <li class="layui-nav-item"><a href="javascript:loadPage('monitor')">进程监控</a></li>
                 <li class="layui-nav-item"><a href="javascript:loadPage('config')">配置文件</a></li>
                 <li class="layui-nav-item ">
@@ -94,6 +94,41 @@
             <div class="layui-tab-content">
 
                 <div class="layui-tab-item layui-show">
+                    <form class="layui-form" action="javascript:;">
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">修改数量</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="num" required  lay-verify="required" placeholder="请输入Docker数量" autocomplete="on" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即修改</button>
+                            </div>
+                        </div>
+                    </form>
+                    <script>
+                        layui.use('form', function(){
+                            var form = layui.form;
+
+                            //监听提交
+                            form.on('submit(formDemo)', function(data){
+                                const num = parseInt(data.field.num);
+                                if (num < 1 ){
+                                    layer.msg("至少一个")
+                                    return false;
+                                }
+
+                                scale(num)
+                                // /services/scale
+                                // layer.msg(JSON.stringify(data.field));
+                                return false;
+                            });
+                        });
+                    </script>
+
                     <table id="nodes" lay-filter="bar_my_pod"></table>
                     <script type="text/html" id="bar_my_pod">
                         <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
@@ -110,7 +145,7 @@
                     <table id="my_image" lay-filter="bar_my_image"></table>
                     <script type="text/html" id="bar_my_image">
                         <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="use">使用</a>
                         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 
                         <!-- 这里同样支持 laytpl 语法，如： -->

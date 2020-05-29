@@ -1,9 +1,118 @@
-<!-- result -->
-<div style="padding: 15px;">运行结果</div>
 
-<div class="layui-card" style="margin : 15px;" >
-	<div class="layui-card-header">运行结果</div>
-	<div class="layui-card-body">
-		<table id="result" lay-filter="test"></table>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>robocup 计算平台</title>
+	<link rel="stylesheet" href="js/layui/css/layui.css">
+
+
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script src="js/layui/layui.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pages/server_detail.js"></script>
+<script src="js/namespace.js"></script>
+<script src="js/pages/my_server.js"></script>
+<script src="js/index.js"></script>
+<script src="js/pages/result.js" ></script>
+
+
+
+<div class="layui-layout layui-layout-admin">
+	<div class="layui-header">
+		<div class="layui-logo">robocup 计算平台</div>
+		<!-- 头部区域（可配合layui已有的水平导航） -->
+		<ul class="layui-nav layui-layout-left">
+
+			<li class="layui-nav-item">
+				<a id="now_namespace" href="javascript:;">正式环境</a>
+				<dl id="namespaces" class="layui-nav-child">
+					<dd><a namespace_id="0" href="">正式环境</a></dd>
+					<dd><a href="">hjwTest</a></dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item"><a href="">环境管理</a></li>
+		</ul>
+		<ul class="layui-nav layui-layout-right">
+			<li class="layui-nav-item"><a href="">帮助</a></li>
+			<li class="layui-nav-item"><a href="">反馈</a></li>
+			<li class="layui-nav-item">
+				<a href="javascript:;">
+					<img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+					hjw
+				</a>
+				<dl class="layui-nav-child">
+					<dd><a href="">基本资料</a></dd>
+					<dd><a href="">安全设置</a></dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item"><a href="">退了</a></li>
+		</ul>
+	</div>
+
+	<div class="layui-side layui-bg-black">
+		<div class="layui-side-scroll">
+			<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+			<ul class="layui-nav layui-nav-tree" lay-filter="test">
+				<li class="layui-nav-item "><a href="index.html">我的服务</a></li>
+				<li class="layui-nav-item"><a href="sys_info.html">计算机信息</a></li>
+				<!--                <li class="layui-nav-item ">-->
+				<!--                    <a class="" href="javascript:;">镜像管理</a>-->
+				<!--                    <dl class="layui-nav-child">-->
+				<!--                        <dd><a href="my_image.html">我的镜像</a></dd>-->
+				<!--                    </dl>-->
+				<!--                </li>-->
+				<li class="layui-nav-item layui-this"><a href="result.html">运行结果</a></li>
+			</ul>
+
+		</div>
+	</div>
+
+	<div class="layui-body layui-bg-gray" id="body">
+		<!-- 内容主体区域 -->
+
+
+		<!-- result -->
+		<div style="padding: 15px;">运行结果</div>
+
+		<div class="layui-card" style="margin : 15px;" >
+			<div class="layui-card-header">运行结果</div>
+			<div class="layui-card-body">
+				<table id="result" lay-filter="results"></table>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="layui-footer">
+		<!-- 底部固定区域 -->
+		© robocmp.com - robocup 计算平台
 	</div>
 </div>
+
+
+
+
+
+
+<div id="a"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

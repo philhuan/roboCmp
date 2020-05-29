@@ -1,3 +1,6 @@
+<!-- server_detail -->
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +16,17 @@
 <script src="js/layui/layui.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/common.js"></script>
+<script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+<script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
 <script src="js/pages/server_detail.js"></script>
+<script src="js/pages/my_image.js"></script>
 <script src="js/namespace.js"></script>
 <script src="js/pages/my_server.js"></script>
 <script src="js/index.js"></script>
+<script src="js/pages/sys_info.html.js"></script>
+
 
 
 
@@ -56,14 +66,14 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item layui-this"><a href="index.html">我的服务</a></li>
-                <li class="layui-nav-item"><a href="sys_info.html">计算机信息</a></li>
-<!--                <li class="layui-nav-item ">-->
-<!--                    <a class="" href="javascript:;">镜像管理</a>-->
-<!--                    <dl class="layui-nav-child">-->
-<!--                        <dd><a href="my_image.html">我的镜像</a></dd>-->
-<!--                    </dl>-->
-<!--                </li>-->
+                <li class="layui-nav-item "><a href="index.html">我的服务</a></li>
+                <li class="layui-nav-item layui-this"><a href="sys_info.html">计算机信息</a></li>
+                <!--                <li class="layui-nav-item ">-->
+                <!--                    <a class="" href="javascript:;">镜像管理</a>-->
+                <!--                    <dl class="layui-nav-child">-->
+                <!--                        <dd><a href="my_image.html">我的镜像</a></dd>-->
+                <!--                    </dl>-->
+                <!--                </li>-->
                 <li class="layui-nav-item"><a href="result.html">运行结果</a></li>
             </ul>
 
@@ -72,26 +82,34 @@
 
     <div class="layui-body layui-bg-gray" id="body">
         <!-- 内容主体区域 -->
+<!--        <div id="server_name" style="padding: 15px;">GaitOptimization</div>-->
 
-        <div style="padding: 15px;">我的服务</div>
+        <div style="padding: 15px;">计算机信息</div>
 
         <div class="layui-card" style="margin : 15px;" >
-            <div class="layui-card-header">服务列表</div>
+            <div class="layui-card-header">计算机信息</div>
             <div class="layui-card-body">
-                <table id="my_server" lay-filter="test"></table>
+                CPU 占用
+                <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="cpu">
+                    <div class="layui-progress-bar layui-bg-blue" lay-percent="0%"></div>
+                </div>
+                内存
+                <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="mem">
+                    <div class="layui-progress-bar layui-bg-blue" lay-percent="0%"></div>
+                </div>
+                内存总量：<p id = "totalMem">1</p>
+
+                系统核数：<p id = "processorCount">2</p>
+
+                <div id="cpu" style="min-width:400px;height:400px"></div>
+                <div id="mem" style="min-width:400px;height:400px"></div>
+
+
             </div>
         </div>
 
-        <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-xs" lay-event="detail">详细信息</a>
-<!--            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
-<!--            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
 
-            <!-- 这里同样支持 laytpl 语法，如： -->
-            {{#  if(d.auth > 2){ }}
-            <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
-            {{#  } }}
-        </script>
+
     </div>
 
     <div class="layui-footer">
@@ -101,16 +119,9 @@
 </div>
 
 
-
-
-
-
 <div id="a"></div>
 </body>
 </html>
-
-
-
 
 
 

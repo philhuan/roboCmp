@@ -21,7 +21,7 @@ public class DockerController {
     DockerClient dockerClient;
 
     @GetMapping("/info")
-    public ResponseEntity listNamespace (){
+    public ResponseEntity info (){
         Info info = dockerClient.infoCmd().exec();
         return ResponseEntity.ok(new JSONResult<Info>(info));
     }

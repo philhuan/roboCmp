@@ -1,5 +1,6 @@
 let pods;
 
+let podRefresh = 0
 
 function loadNodes() {
     let namespace_name = namespaces[namespace_id].metadata.name
@@ -23,7 +24,26 @@ $(function () {
 
         //…
     });
+
+
+
+    // refreshPods()
 })
+
+function scale(n) {
+    let namespace_name = namespaces[namespace_id].metadata.name
+    let url = host + "/services/scale?service=" + getQueryVariable("server")+"&namespace="+namespace_name+"&n="+n
+    $.get(url, function (res) {
+        console.log(res)
+        if (res.code !== 0) {
+            layer.msg(url + ' 连接失败,msg:' + res.message)
+        } else {
+            layer.msg("修改成功")
+            refresh()
+        }
+
+    })
+}
 
 function renderPods() {
 
@@ -47,10 +67,14 @@ function renderPods() {
             }
             if (pod.metadata.deletionTimestamp) {
                 line.status = 'Terminating'
-                setTimeout(loadNodes, 1000);
-            }
-            if (line.status === 'Pending') {
-                setTimeout(loadNodes, 1000);
+                podRefresh ++
+                setTimeout(refreshPods, 1000);
+
+            }else if (line.status === 'Pending') {
+                podRefresh ++
+                setTimeout(refreshPods, 1000);
+            } else {
+
             }
             data.push(line)
         }
@@ -61,7 +85,7 @@ function renderPods() {
         //第一个实例
         table.render({
             elem: '#nodes'
-            , height: 600
+            , height: 700
             //,url: '/demo/table/user/' //数据接口
             , page: true //开启分页
             , cols: [[ //表头
@@ -69,9 +93,10 @@ function renderPods() {
                 , {field: 'ip', title: 'ip',sort: true}
                 , {field: 'image_version', title: '镜像版本'}
                 , {field: 'status', title: '状态'}
-                , {fixed: 'right', align: 'center', toolbar: '#bar_my_image'}
-            ]],
-            data: data
+                //, {fixed: 'right', align: 'center', toolbar: '#bar_my_pod'}
+            ]]
+            , limit:20
+            , data: data
         });
         //监听工具条
         table.on('tool(bar_my_pod)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
@@ -108,6 +133,18 @@ function renderPods() {
         $('#server_name').text(getQueryVariable("server"))
 
     });
+}
+
+function refreshPods() {
+    if (podRefresh === 1) {
+        loadNodes()
+    }
+
+    // if (podRefresh) {
+    //     renderPods()
+    // }
+    console.log("refresh")
+    podRefresh --
 }
 
 function deletePod(podName) {
