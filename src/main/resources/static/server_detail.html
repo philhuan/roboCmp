@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>robocup 计算平台</title>
+    <title>robocup 训练平台</title>
     <link rel="stylesheet" href="js/layui/css/layui.css">
 
 
@@ -26,7 +26,7 @@
 
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">robocup 计算平台</div>
+        <div class="layui-logo">robocup 训练平台</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
 
@@ -61,21 +61,14 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-this"><a href="index.html">我的服务</a></li>
-                <li class="layui-nav-item"><a href="sys_info.html">计算机信息</a></li>
-                <li class="layui-nav-item"><a href="javascript:loadPage('monitor')">进程监控</a></li>
-                <li class="layui-nav-item"><a href="javascript:loadPage('config')">配置文件</a></li>
-                <li class="layui-nav-item ">
-                    <a class="" href="javascript:;">镜像管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:loadPage('my_image')">我的镜像</a></dd>
-                        <!-- <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="javascript:;">列表三</a></dd>
-            <dd><a href="">超链接</a></dd> -->
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a href="javascript:loadPage('result')">运行结果</a></li>
-                <li class="layui-nav-item"><a href="javascript:refresh()">Test</a></li>
-                <li class="layui-nav-item"><a href="javascript:replaceOrAddParamVal('aa','aa')">Test</a></li>
+                <li class="layui-nav-item"><a href="sys_info.html">监控</a></li>
+                <!--                <li class="layui-nav-item ">-->
+                <!--                    <a class="" href="javascript:;">镜像管理</a>-->
+                <!--                    <dl class="layui-nav-child">-->
+                <!--                        <dd><a href="my_image.html">我的镜像</a></dd>-->
+                <!--                    </dl>-->
+                <!--                </li>-->
+                <li class="layui-nav-item"><a href="result.html">运行结果</a></li>
             </ul>
 
         </div>
@@ -131,8 +124,8 @@
 
                     <table id="nodes" lay-filter="bar_my_pod"></table>
                     <script type="text/html" id="bar_my_pod">
-                        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+<!--                        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>-->
+<!--                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
                         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 
                         <!-- 这里同样支持 laytpl 语法，如： -->
@@ -144,9 +137,9 @@
                 <div class="layui-tab-item ">
                     <table id="my_image" lay-filter="bar_my_image"></table>
                     <script type="text/html" id="bar_my_image">
-                        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+<!--                        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>-->
                         <a class="layui-btn layui-btn-xs" lay-event="use">使用</a>
-                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+<!--                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
 
                         <!-- 这里同样支持 laytpl 语法，如： -->
                         {{#  if(d.auth > 2){ }}
@@ -162,7 +155,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © robocmp.com - robocup 计算平台
+        © robocmp.com - robocup 训练平台
     </div>
 </div>
 

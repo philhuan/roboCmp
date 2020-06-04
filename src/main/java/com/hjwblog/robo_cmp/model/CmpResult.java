@@ -160,15 +160,4 @@ public class CmpResult {
     public void setResult(String result) {
         this.result = result == null ? null : result.trim();
     }
-
-    public CmpResult(String service, String container, String params, String result) {
-        this.service = service;
-        this.container = container;
-        this.params = params;
-        this.result = result;
-    }
-
-    public CmpResult() {
-    }
-
 }

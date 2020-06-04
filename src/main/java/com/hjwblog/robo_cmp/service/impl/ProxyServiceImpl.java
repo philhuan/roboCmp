@@ -37,6 +37,7 @@ public class ProxyServiceImpl implements ProxyService {
 //        for(Pod pod :podList) {
 //            free.add(pod.getMetadata().getName());
 //        }
+
     }
 
     private Boolean lockPod(String podName) {
@@ -65,7 +66,13 @@ public class ProxyServiceImpl implements ProxyService {
                     try {
                         String ret = get(url);
                         HttpResp resp =  gson.fromJson(ret, HttpResp.class);
-                        cmpResultMapper.insert(new CmpResult(service,podName,param,resp.getData().getResult()+""));
+
+                        CmpResult result = new CmpResult();
+                        result.setService(service);
+                        result.setContainer(podName);
+                        result.setParams(param);
+                        result.setResult(resp.getData().getResult()+"");
+                        cmpResultMapper.insert(result);
                         return new JSONResult<>(resp);
                     } catch (IOException e) {
                         return new JSONResult<>(e.toString());
